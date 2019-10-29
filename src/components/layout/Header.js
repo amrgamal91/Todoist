@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaPaintBrush } from "react-icons/fa";
+import { AddTask } from "../AddTask";
+export const Header = ({ darkMode, setDarkMode }) => {
+  const [shouldShowMain, setshouldShowMain] = useState(false);
+  const [showQuickAddTask, setShowQuickAddTask] = useState(false);
 
-export const Header = () => {
   return (
     <header className="header" data-testid="header">
       <nav>
@@ -10,15 +13,39 @@ export const Header = () => {
         </div>
         <div className="settings">
           <ul>
-            <li data-testid="quick-add-task-action" className="settings__add">
+            <li
+              data-testid="quick-add-task-action"
+              aria-label="Quick add task"
+              className="settings__add"
+              onClick={() => {
+                setShowQuickAddTask(true);
+                setshouldShowMain(true);
+              }}
+              onKeyDown={() => {
+                setShowQuickAddTask(true);
+                setshouldShowMain(true);
+              }}
+            >
               +
             </li>
-            <li data-testid="dark-mode-action" className="settings__darkmode">
+            <li
+              data-testid="dark-mode-action"
+              aria-label="Darkmode on/off"
+              className="settings__darkmode"
+              onClick={() => setDarkMode(!darkMode)}
+              onKeyDown={() => setDarkMode(!darkMode)}
+            >
               <FaPaintBrush />
             </li>
           </ul>
         </div>
       </nav>
+      <AddTask
+        showAddTaskMain={false}
+        shouldShowMain={shouldShowMain}
+        showQuickAddTask={showQuickAddTask}
+        setShowQuickAddTask={setShowQuickAddTask}
+      />
     </header>
   );
 };

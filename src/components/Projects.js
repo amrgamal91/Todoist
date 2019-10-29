@@ -7,7 +7,7 @@ export const Projects = ({ activeValue = null }) => {
   const [active, setActive] = useState(activeValue);
   const { setSelectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
-  console.log("here is the projects : " + JSON.stringify(projects));
+  // console.log("here is the projects : " + JSON.stringify(projects));
 
   return (
     projects &&
@@ -25,6 +25,7 @@ export const Projects = ({ activeValue = null }) => {
         <div
           role="button"
           data-testid="project-action"
+          tabIndex={0}
           onClick={() => {
             setActive(project.projectId);
             setSelectedProject(project.projectId);

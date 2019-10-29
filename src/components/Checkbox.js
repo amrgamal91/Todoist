@@ -17,6 +17,10 @@ export const Checkbox = ({ id }) => {
       className="checkbox-holder"
       data-testid="checkbox-actoin"
       onClick={() => archiveTask()}
+      onKeyDown={() => archiveTask()}
+      // aria-label={`Mark ${taskDesc} as done?`}
+      role="button"
+      tabIndex={0}
     >
       <span className="checkbox"></span>
     </div>

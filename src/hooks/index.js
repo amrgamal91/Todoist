@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { firebase } from "../firebase";
-import { collatedTasksExist } from "../helpers/index";
+import { collatedTasksExist } from "../helpers";
 import moment from "moment";
 
 export const useTasks = selectedProject => {
@@ -32,6 +32,8 @@ export const useTasks = selectedProject => {
         ? (unsubscribe = unsubscribe.where("date", "==", ""))
         : unsubscribe;
 
+    // console.log("unsubscribe.....:" + unsubscribe);
+
     //attaching a listener for document events
     unsubscribe = unsubscribe.onSnapshot(snapshot => {
       const newTasks = snapshot.docs.map(task => ({
@@ -51,6 +53,7 @@ export const useTasks = selectedProject => {
 
       setArchivedTasks(newTasks.filter(task => task.archived !== false));
     });
+
     return () => unsubscribe();
   }, [selectedProject]);
 
