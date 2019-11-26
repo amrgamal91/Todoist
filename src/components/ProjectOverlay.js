@@ -43,3 +43,4 @@ export const ProjectOverlay = ({
 ProjectOverlay.propTypes = {
   projects: PropTypes.array
 };
+
